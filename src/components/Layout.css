@@ -1,0 +1,21 @@
+.layout {
+  position: relative;
+}
+
+/* Efectos suaves para la transición */
+.layout .sticky-container {
+  will-change: transform, width;
+}
+
+/* Layout móvil */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .layout .sticky-container {
+    position: relative;
+    width: 100% !important;
+    height: auto !important;
+  }
+}

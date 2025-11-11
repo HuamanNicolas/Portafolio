@@ -1,0 +1,200 @@
+/* Contenido que se revela */
+.revealed-content {
+  position: relative;
+  background: #090715;
+  min-height: 200vh;
+  margin-left: 0;
+  transition: margin-left 0.8s ease;
+  color: #ccc;
+}
+
+.content-section {
+  padding: 20px 40px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.content-section h2 {
+  color: #52B2A9;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.content-section > p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #aaa;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para la sección Sobre Mí */
+.sobre-mi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.sobre-mi-card {
+  background: #13102cef;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sobre-mi-card:hover {
+  transform: translateY(-5px);
+  border-color: #52B2A9;
+  box-shadow: 0 10px 30px rgba(82, 178, 169, 0.1);
+}
+
+.sobre-mi-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #52B2A9;
+}
+
+.sobre-mi-card p {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* Estilos para la sección de Habilidades */
+.habilidades-section {
+  margin-top: 3rem;
+}
+
+.habilidades-section h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #52B2A9;
+}
+
+.habilidades-section > p {
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 16px;
+}
+
+.loading-habilidades {
+  text-align: center;
+  padding: 2rem;
+  color: #aaa;
+}
+
+.habilidades-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.habilidad-item {
+  background: rgba(82, 178, 169, 0.2);
+  color: #52B2A9;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(82, 178, 169, 0.3);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.habilidad-item:hover {
+  background: rgba(82, 178, 169, 0.3);
+  border-color: #52B2A9;
+  transform: translateY(-2px);
+}
+
+/* Estilos para el contenido extra */
+.extra-content {
+  padding: 40px;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.extra-content h2 {
+  color: #52B2A9;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.extra-content > p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #aaa;
+  margin-bottom: 2rem;
+}
+
+.contacto-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contacto-card {
+  background: #2a2a2a;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.contacto-card:hover {
+  transform: translateY(-5px);
+  border-color: #52B2A9;
+}
+
+.contacto-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #52B2A9;
+}
+
+.contacto-card p {
+  color: #aaa;
+  line-height: 1.8;
+  word-break: break-all;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .revealed-content.mobile-content {
+    margin-left: 0 !important;
+    background: #13102cef;
+    min-height: auto;
+  }
+
+  .content-section {
+    padding: 60px 20px 20px;
+  }
+  
+  .sobre-mi-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .habilidades-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contacto-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .extra-content {
+    padding: 20px;
+  }
+}

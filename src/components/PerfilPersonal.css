@@ -1,0 +1,294 @@
+/* Contenedor sticky principal */
+.sticky-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #090715;
+  z-index: 10;
+  transition: all 0.8s ease;
+  overflow: hidden;
+  float: left;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #ccc;
+  padding: 40px;
+}
+
+/* Estilos para el portfolio personal */
+.presentacion-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  color: #ccc;
+  justify-content: center;
+  transition: all 0.8s ease;
+  width: 100%;
+}
+
+.presentacion-container.scrolled {
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.image-container {
+  width: 250px;
+  height: 320px;
+  transition: all 0.8s ease;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 3px solid #52B2A9;
+}
+
+.image-container.circular {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: #aaa 0px 0px 10px 0px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all 0.8s ease;
+}
+
+.info {
+  transition: all 0.8s ease;
+}
+
+.presentacion-container.scrolled .info {
+  text-align: center;
+  width: 100%;
+}
+
+.info h1 {
+  color: white;
+  font-size: 34px;
+  margin-bottom: 5px;
+  transition: all 0.8s ease;
+}
+
+.presentacion-container.scrolled .info h1 {
+  font-size: 28px;
+  margin-bottom: 3px;
+  color: #eef1f6;
+}
+
+.info h2 {
+  color: #52B2A9;
+  font-size: 18px;
+  margin-bottom: 20px;
+  transition: all 0.8s ease;
+}
+
+.presentacion-container.scrolled .info h2 {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.description {
+  max-width: 500px;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 20px;
+  transition: all 0.8s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.description.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  max-height: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.navigation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  margin-bottom: 20px;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.navigation.visible {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 200px;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation li {
+  margin-bottom: 10px;
+}
+
+.navigation button {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.navigation button:hover {
+  background-color: rgba(82, 178, 169, 0.2);
+  color: #52B2A9;
+}
+
+.social-icons {
+  transition: all 0.8s ease;
+}
+
+.social-icons a {
+  margin-right: 15px;
+  font-size: 24px;
+  color: #ccc;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.presentacion-container.scrolled .social-icons a {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.social-icons a:hover {
+  color: #52B2A9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .presentacion-container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .presentacion-container.scrolled {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .image-container {
+    width: 150px;
+    height: 180px;
+  }
+  
+  .image-container.circular {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .info h1 {
+    font-size: 28px;
+  }
+  
+  .presentacion-container.scrolled .info h1 {
+    font-size: 24px;
+  }
+  
+  .description {
+    font-size: 14px;
+  }
+}
+
+/* Estados específicos de la transición */
+@media (min-width: 769px) {
+  .sticky-container {
+    min-width: 22vw;
+  }
+}
+
+/* Estilos específicos para móvil */
+@media (max-width: 768px) {
+  .sticky-container.mobile-view {
+    position: relative !important;
+    width: 100vw !important;
+    height: auto !important;
+    float: none !important;
+    background: #0c091c;
+    padding-bottom: 2rem;
+  }
+
+  .hero-content {
+    padding: 2rem 1.5rem;
+    height: auto;
+    min-height: auto;
+  }
+
+  .presentacion-container.mobile-layout {
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 1.5rem !important;
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  .presentacion-container.mobile-layout .image-container {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    align-self: center;
+  }
+
+  .presentacion-container.mobile-layout .info h1 {
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem !important;
+    color: #eef1f6 !important;
+  }
+
+  .presentacion-container.mobile-layout .info h2 {
+    font-size: 1.1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .description.mobile-description {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    max-height: none !important;
+    margin-bottom: 1.5rem !important;
+    overflow: visible !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: #aaa !important;
+  }
+
+  .presentacion-container.mobile-layout .social-icons {
+    margin-top: 1rem;
+  }
+
+  .presentacion-container.mobile-layout .social-icons a {
+    font-size: 1.8rem !important;
+    margin-right: 1.5rem !important;
+  }
+
+  /* Ocultar navegación desktop en móvil */
+  .navigation {
+    display: none !important;
+  }
+}

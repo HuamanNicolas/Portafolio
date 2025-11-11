@@ -1,0 +1,108 @@
+/* Estilos para el componente Experiencia */
+.loading-container, .no-experiencias {
+  text-align: center;
+  padding: 2rem;
+  color: #aaa;
+}
+
+.experiencias-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experiencia-card {
+  display: flex;
+  background: #13102cef;
+  border-radius: 8px;
+  border: 1px solid #333;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.experiencia-card:hover {
+  transform: translateY(-3px);
+  border-color: #52B2A9;
+}
+
+.experiencia-año {
+  background: #52B2A9;
+  color: white;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.logo-experiencia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.experiencia-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.experiencia-content h3 {
+  color: #52B2A9;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.experiencia-descripcion {
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.experiencia-habilidades {
+  margin-top: 1rem;
+}
+
+.experiencia-habilidades h4 {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.habilidades-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.habilidad-tag {
+  background: rgba(82, 178, 169, 0.2);
+  color: #52B2A9;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(82, 178, 169, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .experiencia-card {
+    flex-direction: column;
+  }
+
+  .experiencia-año {
+    min-width: auto;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .experiencia-content {
+    padding: 1rem;
+  }
+}
