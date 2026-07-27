@@ -10,6 +10,7 @@ import {
   query 
 } from 'firebase/firestore'
 import { db } from '../../firebase/config'
+import { compressImageToBase64 } from '../../utils/imageCompression'
 import './CrudProyectos.css'
 
 function CrudProyectos() {
@@ -21,7 +22,8 @@ function CrudProyectos() {
     descripcion: '',
     tecnologias: '',
     enlace: '',
-    fecha: ''
+    fecha: '',
+    imagen: ''
   })
 
   // Cargar proyectos
@@ -66,6 +68,19 @@ function CrudProyectos() {
     }))
   }
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      try {
+        const base64 = await compressImageToBase64(file, 1200, 1200) // Proyectos pueden tener imágenes un poco más grandes
+        setFormData(prev => ({ ...prev, imagen: base64 }))
+      } catch (error) {
+        console.error("Error al procesar la imagen:", error)
+        alert("Error al procesar la imagen")
+      }
+    }
+  }
+
   // Crear nuevo proyecto
   const crearProyecto = async (e) => {
     e.preventDefault()
@@ -86,6 +101,7 @@ function CrudProyectos() {
         tecnologias: tecnologiasArray,
         enlace: formData.enlace,
         fecha: formData.fecha || new Date().getFullYear().toString(),
+        imagen: formData.imagen || '',
         fechaCreacion: new Date()
       })
 
@@ -108,7 +124,8 @@ function CrudProyectos() {
         ? proyecto.tecnologias.join(', ')
         : proyecto.tecnologias || '',
       enlace: proyecto.enlace || '',
-      fecha: proyecto.fecha || ''
+      fecha: proyecto.fecha || '',
+      imagen: proyecto.imagen || ''
     })
   }
 
@@ -133,6 +150,7 @@ function CrudProyectos() {
         tecnologias: tecnologiasArray,
         enlace: formData.enlace,
         fecha: formData.fecha || new Date().getFullYear().toString(),
+        imagen: formData.imagen || '',
         fechaActualizacion: new Date()
       })
 
@@ -169,7 +187,8 @@ function CrudProyectos() {
       descripcion: '',
       tecnologias: '',
       enlace: '',
-      fecha: ''
+      fecha: '',
+      imagen: ''
     })
     setEditingId(null)
   }
@@ -245,6 +264,22 @@ function CrudProyectos() {
             onChange={handleInputChange}
             placeholder="https://github.com/usuario/proyecto"
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="imagen">Imagen / Captura</label>
+          <input
+            type="file"
+            id="imagen"
+            name="imagen"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          {formData.imagen && (
+            <div className="image-preview" style={{ marginTop: '10px' }}>
+              <img src={formData.imagen} alt="Vista previa" style={{ maxWidth: '200px', borderRadius: '4px' }} />
+            </div>
+          )}
         </div>
 
         <div className="form-actions">

@@ -4,11 +4,11 @@
   top: 0;
   left: 0;
   height: 100vh;
-  background-color: #090715;
+  background-color: transparent;
   z-index: 10;
-  transition: all 0.8s ease;
   overflow: hidden;
   float: left;
+  width: 22vw;
 }
 
 .hero-content {
@@ -18,7 +18,7 @@
   align-items: center;
   height: 100%;
   color: #ccc;
-  padding: 40px;
+  padding: 20px;
 }
 
 /* Estilos para el portfolio personal */
@@ -188,30 +188,30 @@
     gap: 30px;
     padding: 20px;
   }
-  
+
   .presentacion-container.scrolled {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .image-container {
     width: 150px;
     height: 180px;
   }
-  
+
   .image-container.circular {
     width: 100px;
     height: 100px;
   }
-  
+
   .info h1 {
     font-size: 28px;
   }
-  
+
   .presentacion-container.scrolled .info h1 {
     font-size: 24px;
   }
-  
+
   .description {
     font-size: 14px;
   }
@@ -231,7 +231,7 @@
     width: 100vw !important;
     height: auto !important;
     float: none !important;
-    background: #0c091c;
+    background: transparent;
     padding-bottom: 2rem;
   }
 

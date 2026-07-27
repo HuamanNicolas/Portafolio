@@ -3,7 +3,7 @@ import profileImage from '../assets/WhatsApp Image 2025-10-23 at 10.38.07_25e0d7
 import MenuHamburguesa from './MenuHamburguesa'
 import './PerfilPersonal.css'
 
-function PerfilPersonal({ scrollProgress, isScrolled, scrollToSection, activeSection, isMobile }) {
+function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
   return (
     <>
       {/* Menú hamburguesa solo en móvil */}
@@ -14,15 +14,10 @@ function PerfilPersonal({ scrollProgress, isScrolled, scrollToSection, activeSec
         />
       )}
       
-      <div 
-        className={`sticky-container ${isMobile ? 'mobile-view' : ''}`}
-        style={{
-          width: isMobile ? '100vw' : `${100 - scrollProgress * 74}vw`,
-        }}
-      >
+      <div className={`sticky-container ${isMobile ? 'mobile-view' : ''}`}>
         <div className="hero-content">
-          <div className={`presentacion-container ${isScrolled ? 'scrolled' : ''} ${isMobile ? 'mobile-layout' : ''}`}>
-            <div className={`image-container ${isScrolled ? 'circular' : ''}`}>
+          <div className={`presentacion-container scrolled ${isMobile ? 'mobile-layout' : ''}`}>
+            <div className={`image-container circular`}>
               <img 
                 src={profileImage} 
                 alt="Nicolas Huaman" 
@@ -33,7 +28,7 @@ function PerfilPersonal({ scrollProgress, isScrolled, scrollToSection, activeSec
             <div className="info">
               <h1>Nicolas Huaman</h1>
               <h2>Desarrollador Web</h2>
-              <p className={`description ${isScrolled ? 'hidden' : ''} ${isMobile ? 'mobile-description' : ''}`}>
+              <p className={`description hidden ${isMobile ? 'mobile-description' : ''}`}>
                 Soy Nico, estudiante de la UNSJ, próximo a recibirme como Programador Web.
                 Me apasiona la programación y busco aplicar mis conocimientos en el ámbito laboral.
                 He trabajado en proyectos colaborativos que me permitieron crecer tanto en lo técnico como en lo personal,
@@ -42,7 +37,7 @@ function PerfilPersonal({ scrollProgress, isScrolled, scrollToSection, activeSec
               
               {/* Navegación solo en escritorio */}
               {!isMobile && (
-                <nav className={`navigation ${isScrolled ? 'visible' : ''}`}>
+                <nav className="navigation visible">
                   <ul>
                     <li>
                       <button 

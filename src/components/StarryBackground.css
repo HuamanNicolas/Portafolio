@@ -1,0 +1,55 @@
+.starry-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation-name: twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* Tamaños más grandes como solicitó el usuario */
+.star-small {
+  width: 2px;
+  height: 2px;
+}
+
+.star-medium {
+  width: 4px;
+  height: 4px;
+}
+
+.star-large {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes twinkle {
+  0%, 20% {
+    opacity: 0;
+    transform: scale(0.8);
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8);
+  }
+  40%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0);
+  }
+}

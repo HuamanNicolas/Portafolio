@@ -1,28 +1,27 @@
 /* Contenido que se revela */
 .revealed-content {
   position: relative;
-  background: #090715;
+  background: transparent;
   min-height: 200vh;
-  margin-left: 0;
-  transition: margin-left 0.8s ease;
+  margin-left: 22vw;
   color: #ccc;
 }
 
 .content-section {
-  padding: 20px 40px 40px;
+  padding: 100px 40px 40px;
   max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
 }
 
 .content-section h2 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 28px;
   margin-bottom: 20px;
   text-align: left;
 }
 
-.content-section > p {
+.content-section>p {
   font-size: 16px;
   line-height: 1.6;
   color: #aaa;
@@ -30,37 +29,42 @@
   margin-bottom: 2rem;
 }
 
-/* Estilos para la sección Sobre Mí */
-.sobre-mi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+/* Estilos para la sección Sobre Mí (Lista) */
+.sobre-mi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-bottom: 4rem;
 }
 
-.sobre-mi-card {
-  background: #13102cef;
-  padding: 2rem;
-  border-radius: 8px;
-  border: 1px solid #333;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.sobre-mi-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.sobre-mi-card:hover {
-  transform: translateY(-5px);
-  border-color: #52B2A9;
-  box-shadow: 0 10px 30px rgba(82, 178, 169, 0.1);
-}
-
-.sobre-mi-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(82, 178, 169, 0.1);
   color: #52B2A9;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(82, 178, 169, 0.2);
+  flex-shrink: 0;
 }
 
-.sobre-mi-card p {
+.item-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.item-content p {
   color: #aaa;
-  line-height: 1.6;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* Estilos para la sección de Habilidades */
@@ -74,7 +78,7 @@
   color: #52B2A9;
 }
 
-.habilidades-section > p {
+.habilidades-section>p {
   color: #aaa;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -125,7 +129,7 @@
   text-align: center;
 }
 
-.extra-content > p {
+.extra-content>p {
   text-align: center;
   font-size: 16px;
   line-height: 1.6;
@@ -171,29 +175,26 @@
 @media (max-width: 768px) {
   .revealed-content.mobile-content {
     margin-left: 0 !important;
-    background: #13102cef;
+    background: transparent;
     min-height: auto;
   }
 
   .content-section {
-    padding: 60px 20px 20px;
+    padding: 100px 20px 20px;
   }
-  
-  .sobre-mi-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
+
+  /* Removed sobre-mi-grid media query */
+
   .habilidades-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .contacto-info {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .extra-content {
     padding: 20px;
   }

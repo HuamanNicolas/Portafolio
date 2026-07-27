@@ -115,9 +115,9 @@ function Proyectos() {
                 )}
               </div>
               
-              {proyecto.nombre && proyecto.nombre.toLowerCase().includes('pandoo') && (
+              {proyecto.imagen && (
                 <div className="proyecto-imagen-externa">
-                  <img src={pandooImage} alt="Pandoo" className="imagen-proyecto-externa" />
+                  <img src={proyecto.imagen} alt={proyecto.nombre} className="imagen-proyecto-externa" />
                 </div>
               )}
             </div>

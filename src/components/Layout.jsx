@@ -4,7 +4,6 @@ import ContenidoPrincipal from './ContenidoPrincipal'
 import './Layout.css'
 
 function Layout() {
-  const [scrollY, setScrollY] = useState(0)
   const [activeSection, setActiveSection] = useState('')
   const [isMobile, setIsMobile] = useState(false)
 
@@ -22,10 +21,6 @@ function Layout() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      setScrollY(currentScrollY)
-      
-      
       if (!isMobile) {
         // Detectar qué sección está activa
         const sections = ['sobre-mi', 'experiencia', 'proyectos', 'habilidades']
@@ -73,11 +68,6 @@ function Layout() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isMobile])
 
-  // Calculamos el progreso del scroll (0 = inicio, 1 = transformación completa)
-  // En móvil, siempre está en estado final
-  const scrollProgress = isMobile ? 1 : Math.min(scrollY / 500, 1)
-  const isScrolled = isMobile ? true : scrollProgress > 0.3
-
   // Función para hacer scroll a secciones
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId)
@@ -89,14 +79,11 @@ function Layout() {
   return (
     <div className="layout">
       <PerfilPersonal 
-        scrollProgress={scrollProgress} 
-        isScrolled={isScrolled} 
         scrollToSection={scrollToSection} 
         activeSection={activeSection}
         isMobile={isMobile}
       />
       <ContenidoPrincipal 
-        scrollProgress={scrollProgress} 
         isMobile={isMobile}
       />
     </div>

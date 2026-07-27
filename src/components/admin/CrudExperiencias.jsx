@@ -10,6 +10,7 @@ import {
   query 
 } from 'firebase/firestore'
 import { db } from '../../firebase/config'
+import { compressImageToBase64 } from '../../utils/imageCompression'
 import './CrudExperiencias.css'
 
 function CrudExperiencias() {
@@ -21,7 +22,8 @@ function CrudExperiencias() {
     puesto: '',
     empresa: '',
     descripcion: '',
-    habilidades: ''
+    habilidades: '',
+    imagen: ''
   })
 
   // Cargar experiencias
@@ -66,6 +68,19 @@ function CrudExperiencias() {
     }))
   }
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      try {
+        const base64 = await compressImageToBase64(file)
+        setFormData(prev => ({ ...prev, imagen: base64 }))
+      } catch (error) {
+        console.error("Error al procesar la imagen:", error)
+        alert("Error al procesar la imagen")
+      }
+    }
+  }
+
   // Crear nueva experiencia
   const crearExperiencia = async (e) => {
     e.preventDefault()
@@ -86,6 +101,7 @@ function CrudExperiencias() {
         empresa: formData.empresa,
         descripcion: formData.descripcion,
         habilidades: habilidadesArray,
+        imagen: formData.imagen || '',
         fechaCreacion: new Date()
       })
 
@@ -108,7 +124,8 @@ function CrudExperiencias() {
       descripcion: experiencia.descripcion || '',
       habilidades: Array.isArray(experiencia.habilidades) 
         ? experiencia.habilidades.join(', ')
-        : experiencia.habilidades || ''
+        : experiencia.habilidades || '',
+      imagen: experiencia.imagen || ''
     })
   }
 
@@ -133,6 +150,7 @@ function CrudExperiencias() {
         empresa: formData.empresa,
         descripcion: formData.descripcion,
         habilidades: habilidadesArray,
+        imagen: formData.imagen || '',
         fechaActualizacion: new Date()
       })
 
@@ -169,7 +187,8 @@ function CrudExperiencias() {
       puesto: '',
       empresa: '',
       descripcion: '',
-      habilidades: ''
+      habilidades: '',
+      imagen: ''
     })
     setEditingId(null)
   }
@@ -246,6 +265,22 @@ function CrudExperiencias() {
             onChange={handleInputChange}
             placeholder="React, JavaScript, CSS, Node.js"
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="imagen">Imagen (Logo)</label>
+          <input
+            type="file"
+            id="imagen"
+            name="imagen"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          {formData.imagen && (
+            <div className="image-preview" style={{ marginTop: '10px' }}>
+              <img src={formData.imagen} alt="Vista previa" style={{ maxWidth: '100px', borderRadius: '4px' }} />
+            </div>
+          )}
         </div>
 
         <div className="form-actions">

@@ -48,13 +48,15 @@ function Experiencia() {
         <div className="experiencias-grid">
           {experiencias.map((experiencia, index) => (
             <div key={experiencia.id} className="experiencia-card">
-              {/* <div className="experiencia-año">
-                <img 
-                  src={index === 0 ? bcfexaLogo : crecerLogo} 
-                  alt="Logo empresa"
-                  className="logo-experiencia"
-                />
-              </div> */}
+              {experiencia.imagen && (
+                <div className="experiencia-imagen-container">
+                  <img 
+                    src={experiencia.imagen} 
+                    alt={`Logo ${experiencia.empresa || 'empresa'}`}
+                    className="logo-experiencia"
+                  />
+                </div>
+              )}
               <div className="experiencia-content">
                 <h3>{experiencia.titulo || experiencia.empresa || 'Puesto'}</h3>
                 <h4>{experiencia.año}</h4>

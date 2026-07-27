@@ -4,6 +4,7 @@ import CrudAdmin from './components/admin/CrudAdmin'
 import Login from './components/admin/Login'
 import { auth } from './firebase/config'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
+import StarryBackground from './components/StarryBackground'
 import './App.css'
 
 function App() {
@@ -41,46 +42,39 @@ function App() {
     }
   }
 
-  // Mostrar loading mientras verifica autenticación
-  if (loading && currentPath === '/crud') {
-    return (
-      <div className="app">
+  const renderContent = () => {
+    // Mostrar loading mientras verifica autenticación
+    if (loading && currentPath === '/crud') {
+      return (
         <div style={{ 
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center', 
           minHeight: '100vh',
-          background: '#0c091c',
           color: '#52B2A9'
         }}>
           <p>Verificando autenticación...</p>
         </div>
-      </div>
-    )
-  }
-
-  if (currentPath === '/crud') {
-    // Si no está autenticado, mostrar Login
-    if (!user) {
-      return (
-        <div className="app">
-          <Login onLoginSuccess={() => setUser(auth.currentUser)} />
-        </div>
       )
     }
 
-    // Si está autenticado, mostrar CRUD
-    return (
-      <div className="app">
-        <CrudAdmin user={user} onLogout={handleLogout} />
-      </div>
-    )
-  }
+    if (currentPath === '/crud') {
+      // Si no está autenticado, mostrar Login
+      if (!user) {
+        return <Login onLoginSuccess={() => setUser(auth.currentUser)} />
+      }
 
+      // Si está autenticado, mostrar CRUD
+      return <CrudAdmin user={user} onLogout={handleLogout} />
+    }
+
+    return <Layout />
+  }
 
   return (
     <div className="app">
-      <Layout />
+      <StarryBackground />
+      {renderContent()}
     </div>
   )
 }
