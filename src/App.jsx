@@ -51,7 +51,7 @@ function App() {
           justifyContent: 'center', 
           alignItems: 'center', 
           minHeight: '100vh',
-          color: '#52B2A9'
+          color: '#ff5900'
         }}>
           <p>Verificando autenticación...</p>
         </div>

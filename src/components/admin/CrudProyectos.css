@@ -4,7 +4,7 @@
 }
 
 .crud-proyectos h2 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -33,7 +33,7 @@
 
 .form-group label {
   display: block;
-  color: #52B2A9;
+  color: #ff5900;
   font-weight: 500;
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
@@ -55,8 +55,8 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #52B2A9;
-  box-shadow: 0 0 0 3px rgba(82, 178, 169, 0.1);
+  border-color: #ff5900;
+  box-shadow: 0 0 0 3px rgba(255, 89, 0, 0.1);
 }
 
 .form-group textarea {
@@ -72,7 +72,7 @@
 }
 
 .btn-primary {
-  background: #52B2A9;
+  background: #ff5900;
   color: #0c091c;
   border: none;
   padding: 0.75rem 2rem;
@@ -86,7 +86,7 @@
 .btn-primary:hover {
   background: #45a396;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(82, 178, 169, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 89, 0, 0.3);
 }
 
 .btn-secondary {
@@ -142,8 +142,8 @@
 
 .crud-proyecto-card:hover {
   transform: translateY(-5px);
-  border-color: #52B2A9;
-  box-shadow: 0 10px 30px rgba(82, 178, 169, 0.1);
+  border-color: #ff5900;
+  box-shadow: 0 10px 30px rgba(255, 89, 0, 0.1);
 }
 
 .card-header {
@@ -155,14 +155,14 @@
 }
 
 .card-header h4 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 1.3rem;
   margin: 0;
   flex: 1;
 }
 
 .fecha-badge {
-  background: #52B2A9;
+  background: #ff5900;
   color: #0c091c;
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
@@ -182,22 +182,18 @@
   margin-bottom: 1rem;
 }
 
-.tecnologia-tag {
+.tecnologia -tag {
   display: inline-block;
   background: #0a0817;
-  color: #52B2A9;
+  color: rgba(255, 255, 255, 0.615);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
   font-size: 0.8rem;
   margin: 0.25rem 0.5rem 0.25rem 0;
-  border: 1px solid #52B2A9;
+  border: 1px solid white;
   transition: all 0.3s ease;
 }
 
-.tecnologia-tag:hover {
-  background: #52B2A9;
-  color: #0c091c;
-}
 
 .enlace {
   margin-bottom: 1.5rem;
@@ -267,30 +263,30 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .crud-proyectos-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .form-actions {
     flex-direction: column;
   }
-  
+
   .btn-primary,
   .btn-secondary {
     width: 100%;
   }
-  
+
   .card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .card-actions {
     flex-direction: column;
   }
-  
+
   .btn-edit,
   .btn-delete {
     width: 100%;

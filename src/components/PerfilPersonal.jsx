@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
-import profileImage from '../assets/WhatsApp Image 2025-10-23 at 10.38.07_25e0d733.jpg'
+import profileImage from '../assets/imagen-perfil.png'
 import MenuHamburguesa from './MenuHamburguesa'
 import './PerfilPersonal.css'
 
@@ -8,19 +8,19 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
     <>
       {/* Menú hamburguesa solo en móvil */}
       {isMobile && (
-        <MenuHamburguesa 
-          scrollToSection={scrollToSection} 
-          activeSection={activeSection} 
+        <MenuHamburguesa
+          scrollToSection={scrollToSection}
+          activeSection={activeSection}
         />
       )}
-      
+
       <div className={`sticky-container ${isMobile ? 'mobile-view' : ''}`}>
         <div className="hero-content">
           <div className={`presentacion-container scrolled ${isMobile ? 'mobile-layout' : ''}`}>
             <div className={`image-container circular`}>
-              <img 
-                src={profileImage} 
-                alt="Nicolas Huaman" 
+              <img
+                src={profileImage}
+                alt="Nicolas Huaman"
                 className="profile-image"
               />
             </div>
@@ -34,13 +34,13 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
                 He trabajado en proyectos colaborativos que me permitieron crecer tanto en lo técnico como en lo personal,
                 y estoy motivado para aportar lo mejor de mí en cada desafío.
               </p>
-              
+
               {/* Navegación solo en escritorio */}
               {!isMobile && (
                 <nav className="navigation visible">
                   <ul>
                     <li>
-                      <button 
+                      <button
                         onClick={() => scrollToSection('sobre-mi')}
                         className={activeSection === 'sobre-mi' ? 'active' : ''}
                       >
@@ -48,7 +48,7 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
                       </button>
                     </li>
                     <li>
-                      <button 
+                      <button
                         onClick={() => scrollToSection('experiencia')}
                         className={activeSection === 'experiencia' ? 'active' : ''}
                       >
@@ -56,7 +56,7 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
                       </button>
                     </li>
                     <li>
-                      <button 
+                      <button
                         onClick={() => scrollToSection('proyectos')}
                         className={activeSection === 'proyectos' ? 'active' : ''}
                       >
@@ -64,11 +64,19 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
                       </button>
                     </li>
                     <li>
-                      <button 
+                      <button
                         onClick={() => scrollToSection('habilidades')}
                         className={activeSection === 'habilidades' ? 'active' : ''}
                       >
                         Habilidades
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => scrollToSection('contacto')}
+                        className={activeSection === 'contacto' ? 'active' : ''}
+                      >
+                        Contacto
                       </button>
                     </li>
                   </ul>

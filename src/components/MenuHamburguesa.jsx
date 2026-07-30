@@ -62,6 +62,14 @@ function MenuHamburguesa({ scrollToSection, activeSection }) {
                 Habilidades
               </button>
             </li>
+            <li>
+              <button 
+                onClick={() => handleMenuItemClick('contacto')}
+                className={activeSection === 'contacto' ? 'active' : ''}
+              >
+                Contacto
+              </button>
+            </li>
           </ul>
         </div>
       </nav>

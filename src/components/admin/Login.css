@@ -18,7 +18,7 @@
 }
 
 .login-box h1 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 2rem;
   margin-bottom: 0.5rem;
   text-align: center;
@@ -61,8 +61,8 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #52B2A9;
-  box-shadow: 0 0 0 3px rgba(82, 178, 169, 0.1);
+  border-color: #ff5900;
+  box-shadow: 0 0 0 3px rgba(255, 89, 0, 0.1);
 }
 
 .form-group input::placeholder {
@@ -81,7 +81,7 @@
 
 .login-button {
   padding: 1rem;
-  background: #52B2A9;
+  background: #ff5900;
   color: #0c091c;
   border: none;
   border-radius: 8px;
@@ -95,7 +95,7 @@
 .login-button:hover:not(:disabled) {
   background: #3a8b82;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(82, 178, 169, 0.3);
+  box-shadow: 0 8px 20px rgba(255, 89, 0, 0.3);
 }
 
 .login-button:disabled {

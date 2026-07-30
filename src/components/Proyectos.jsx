@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import pandooImage from '../assets/proyectos/Pandoo.png'
@@ -7,6 +7,47 @@ import './Proyectos.css'
 function Proyectos() {
   const [proyectos, setProyectos] = useState([])
   const [loadingProyectos, setLoadingProyectos] = useState(true)
+  const gridRef = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (gridRef.current) {
+        const rect = gridRef.current.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        
+        // Start filling when the top of the grid is at 70% of the viewport height
+        // Finish filling when the bottom of the grid is at 30% of the viewport height
+        const startOffset = windowHeight * 0.7
+        const scrolled = startOffset - rect.top
+        
+        // The total distance to scroll for 100% fill is the height of the grid 
+        // minus some padding at the end so it fills up before scrolling completely out
+        const scrollDistance = rect.height - (windowHeight * 0.2)
+        
+        const totalRows = Math.ceil(proyectos.length / 2) || 1
+        const stepSize = 100 / totalRows
+        
+        let progress = 0
+        if (scrolled > 0) {
+          progress = Math.min(100, Math.max(0, (scrolled / scrollDistance) * 100))
+        }
+        
+        const currentRow = Math.floor(progress / stepSize) + 1
+        
+        let steppedProgress = currentRow * stepSize
+        if (progress === 0) steppedProgress = 0
+        if (progress > 95) steppedProgress = 100
+        
+        gridRef.current.style.setProperty('--scroll-fill', `${steppedProgress}%`)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    // Initial call to set state if already scrolled
+    handleScroll()
+    
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [proyectos])
 
   // Cargar proyectos de Firebase
   useEffect(() => {
@@ -73,51 +114,52 @@ function Proyectos() {
           <p>Cargando proyectos...</p>
         </div>
       ) : (
-        <div className="proyectos-grid">
+        <div className="proyectos-grid" ref={gridRef}>
+          <div className="timeline-progress" style={{ height: 'var(--scroll-fill, 0%)' }}>
+            <div className="timeline-dot"></div>
+          </div>
           {proyectos.map((proyecto) => (
-            <div key={proyecto.id} className="proyecto-container">
-              <div className="proyecto-card">
-                <div className="proyecto-header">
-                  <h3>{proyecto.nombre}</h3>
-                  {proyecto.fecha && (
-                    <span className="proyecto-fecha">{proyecto.fecha}</span>
-                  )}
-                </div>
-                <p className="proyecto-descripcion">{proyecto.descripcion}</p>
-                
-                {proyecto.tecnologias && (
-                  <div className="proyecto-tecnologias">
-                    <h4>Tecnologías:</h4>
-                    <div className="tecnologias-tags">
-                      {(Array.isArray(proyecto.tecnologias) 
-                        ? proyecto.tecnologias 
-                        : proyecto.tecnologias.split(',')
-                      ).map((tecnologia, index) => (
-                        <span key={index} className="tecnologia-tag">
-                          {typeof tecnologia === 'string' ? tecnologia.trim() : tecnologia}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                {proyecto.enlace && (
-                  <div className="proyecto-enlaces">
-                    <a 
-                      href={proyecto.enlace} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="proyecto-enlace"
-                    >
-                      Ver Proyecto
-                    </a>
-                  </div>
+            <div key={proyecto.id} className="proyecto-card">
+              <div className="proyecto-header">
+                <h3>{proyecto.nombre}</h3>
+                {proyecto.fecha && (
+                  <span className="proyecto-fecha">{proyecto.fecha}</span>
                 )}
               </div>
+              <p className="proyecto-descripcion">{proyecto.descripcion}</p>
               
               {proyecto.imagen && (
-                <div className="proyecto-imagen-externa">
-                  <img src={proyecto.imagen} alt={proyecto.nombre} className="imagen-proyecto-externa" />
+                <div className="proyecto-imagen-interna">
+                  <img src={proyecto.imagen} alt={proyecto.nombre} className="imagen-proyecto-interna" />
+                </div>
+              )}
+              
+              {proyecto.tecnologias && (
+                <div className="proyecto-tecnologias">
+                  <h4>Tecnologías:</h4>
+                  <div className="tecnologias-tags">
+                    {(Array.isArray(proyecto.tecnologias) 
+                      ? proyecto.tecnologias 
+                      : proyecto.tecnologias.split(',')
+                    ).map((tecnologia, index) => (
+                      <span key={index} className="tecnologia-tag">
+                        {typeof tecnologia === 'string' ? tecnologia.trim() : tecnologia}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {proyecto.enlace && (
+                <div className="proyecto-enlaces">
+                  <a 
+                    href={proyecto.enlace} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="proyecto-enlace"
+                  >
+                    Ver Proyecto
+                  </a>
                 </div>
               )}
             </div>

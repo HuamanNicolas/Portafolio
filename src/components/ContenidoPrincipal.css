@@ -8,10 +8,14 @@
 }
 
 .content-section {
-  padding: 100px 40px 40px;
+  padding: 40px 40px 40px;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 100vh;
+}
+
+#sobre-mi.content-section {
+  padding-top: 100px;
+  min-height: auto;
 }
 
 .content-section h2 {
@@ -47,11 +51,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(82, 178, 169, 0.1);
-  color: #52B2A9;
+  background: transparent;
+  color: #ff5900;
   padding: 0.75rem;
   border-radius: 12px;
-  border: 1px solid rgba(82, 178, 169, 0.2);
+  border: 1px solid rgba(255, 89, 0, 0.2);
   flex-shrink: 0;
 }
 
@@ -72,19 +76,6 @@
   margin-top: 3rem;
 }
 
-.habilidades-section h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #52B2A9;
-}
-
-.habilidades-section>p {
-  color: #aaa;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  font-size: 16px;
-}
-
 .loading-habilidades {
   text-align: center;
   padding: 2rem;
@@ -99,21 +90,16 @@
 }
 
 .habilidad-item {
-  background: rgba(82, 178, 169, 0.2);
-  color: #52B2A9;
+  background: rgba(255, 89, 0, 0.2);
+  color: #ff5900;
   padding: 0.5rem 1rem;
   border-radius: 15px;
   font-size: 0.9rem;
-  border: 1px solid rgba(82, 178, 169, 0.3);
+  border: 1px solid rgba(255, 89, 0, 0.3);
   transition: all 0.3s ease;
   cursor: default;
 }
 
-.habilidad-item:hover {
-  background: rgba(82, 178, 169, 0.3);
-  border-color: #52B2A9;
-  transform: translateY(-2px);
-}
 
 /* Estilos para el contenido extra */
 .extra-content {
@@ -123,7 +109,7 @@
 }
 
 .extra-content h2 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 28px;
   margin-bottom: 20px;
   text-align: center;
@@ -156,13 +142,13 @@
 
 .contacto-card:hover {
   transform: translateY(-5px);
-  border-color: #52B2A9;
+  border-color: #ff5900;
 }
 
 .contacto-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
-  color: #52B2A9;
+  color: #ff5900;
 }
 
 .contacto-card p {
@@ -180,7 +166,11 @@
   }
 
   .content-section {
-    padding: 100px 20px 20px;
+    padding: 40px 20px 20px;
+  }
+
+  #sobre-mi.content-section {
+    padding-top: 100px;
   }
 
   /* Removed sobre-mi-grid media query */

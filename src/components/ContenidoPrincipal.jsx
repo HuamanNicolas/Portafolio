@@ -1,5 +1,6 @@
 import Experiencia from './Experiencia'
 import Proyectos from './Proyectos'
+import Contacto from './Contacto'
 import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase/config'
@@ -107,49 +108,32 @@ function ContenidoPrincipal({ isMobile }) {
           </div>
         </div>
 
-        {/* Sección de Habilidades */}
-        <div className="habilidades-section">
-          <h3>Habilidades y Tecnologías</h3>
-          <p>Tecnologías y herramientas que he utilizado en mis experiencias laborales y proyectos</p>
 
-          {loadingHabilidades ? (
-            <div className="loading-habilidades">
-              <p>Cargando habilidades...</p>
-            </div>
-          ) : (
-            <div className="habilidades-grid">
-              {habilidades.map((habilidad, index) => (
-                <div key={index} className="habilidad-item">
-                  {habilidad}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
       </div>
 
       <Experiencia />
       <Proyectos />
+      {/* Sección de Habilidades */}
+      <div className="content-section habilidades-section" id="habilidades">
+        <h2>Habilidades y Tecnologías</h2>
+        <p>Tecnologías y herramientas que he utilizado en mis experiencias laborales y proyectos</p>
 
-      {/* Contenido adicional para generar scroll */}
-      {/* <div className="extra-content">
-        <h2>Contacto</h2>
-        <p>¿Interesado en trabajar juntos? No dudes en contactarme.</p>
-        <div className="contacto-info">
-          <div className="contacto-card">
-            <h3>Email</h3>
-            <p>nicolas.huaman@example.com</p>
+        {loadingHabilidades ? (
+          <div className="loading-habilidades">
+            <p>Cargando habilidades...</p>
           </div>
-          <div className="contacto-card">
-            <h3>LinkedIn</h3>
-            <p>linkedin.com/in/nicolas-huaman</p>
+        ) : (
+          <div className="habilidades-grid">
+            {habilidades.map((habilidad, index) => (
+              <div key={index} className="habilidad-item">
+                {habilidad}
+              </div>
+            ))}
           </div>
-          <div className="contacto-card">
-            <h3>GitHub</h3>
-            <p>github.com/nicolas-huaman</p>
-          </div>
-        </div>
-      </div> */}
+        )}
+      </div>
+
+      <Contacto />
     </div>
   )
 }

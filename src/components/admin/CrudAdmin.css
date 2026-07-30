@@ -8,7 +8,7 @@
 /* Header */
 .crud-header {
   background: #0a0817;
-  border-bottom: 2px solid #52B2A9;
+  border-bottom: 2px solid #ff5900;
   padding: 2rem;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .header-left h1 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
@@ -42,14 +42,14 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(82, 178, 169, 0.1);
+  background: rgba(255, 89, 0, 0.1);
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  border: 1px solid rgba(82, 178, 169, 0.3);
+  border: 1px solid rgba(255, 89, 0, 0.3);
 }
 
 .user-email {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -74,8 +74,8 @@
 
 .btn-back {
   background: transparent;
-  border: 2px solid #52B2A9;
-  color: #52B2A9;
+  border: 2px solid #ff5900;
+  color: #ff5900;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   font-size: 1rem;
@@ -88,7 +88,7 @@
 }
 
 .btn-back:hover {
-  background: #52B2A9;
+  background: #ff5900;
   color: #0c091c;
   transform: translateY(-2px);
 }
@@ -116,12 +116,12 @@
 }
 
 .tab-button:hover {
-  color: #52B2A9;
+  color: #ff5900;
 }
 
 .tab-button.active {
-  color: #52B2A9;
-  border-bottom-color: #52B2A9;
+  color: #ff5900;
+  border-bottom-color: #ff5900;
 }
 
 /* Content */
@@ -149,7 +149,7 @@
   align-items: center;
   min-height: 400px;
   font-size: 1.2rem;
-  color: #52B2A9;
+  color: #ff5900;
 }
 
 /* Responsive */

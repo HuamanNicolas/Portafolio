@@ -46,14 +46,13 @@
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 8px;
-  border: 3px solid #52B2A9;
+  border: 3px solid #ccc;
 }
 
 .image-container.circular {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  box-shadow: #aaa 0px 0px 10px 0px;
 }
 
 .profile-image {
@@ -87,7 +86,7 @@
 }
 
 .info h2 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 18px;
   margin-bottom: 20px;
   transition: all 0.8s ease;
@@ -156,8 +155,8 @@
 }
 
 .navigation button:hover {
-  background-color: rgba(82, 178, 169, 0.2);
-  color: #52B2A9;
+
+  color: #ff5900;
 }
 
 .social-icons {
@@ -178,7 +177,7 @@
 }
 
 .social-icons a:hover {
-  color: #52B2A9;
+  color: #ff5900;
 }
 
 /* Responsive */

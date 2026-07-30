@@ -12,13 +12,13 @@
   justify-content: space-around;
   width: 50px;
   height: 50px;
-  background: #52B2A9;
+  background: #ff5900;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   padding: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(82, 178, 169, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 89, 0, 0.3);
 }
 
 .hamburger-button:hover {
@@ -83,7 +83,7 @@
   width: 280px;
   height: 100%;
   background: #0c091c;
-  border-left: 2px solid #52B2A9;
+  border-left: 2px solid #ff5900;
   padding: 2rem;
   transform: translateX(100%);
   transition: transform 0.3s ease;
@@ -95,7 +95,7 @@
 }
 
 .mobile-nav-content h3 {
-  color: #52B2A9;
+  color: #ff5900;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -128,13 +128,13 @@
 }
 
 .mobile-nav-content button:hover {
-  background: rgba(82, 178, 169, 0.1);
-  color: #52B2A9;
+  background: rgba(255, 89, 0, 0.1);
+  color: #ff5900;
   transform: translateX(5px);
 }
 
 .mobile-nav-content button.active {
-  background: #52B2A9;
+  background: #ff5900;
   color: #0c091c;
   font-weight: 600;
 }
@@ -147,7 +147,7 @@
   transform: translateY(-50%);
   width: 4px;
   height: 30px;
-  background: #52B2A9;
+  background: #ff5900;
   border-radius: 2px;
 }
 
