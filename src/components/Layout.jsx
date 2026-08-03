@@ -21,44 +21,39 @@ function Layout() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!isMobile) {
-        // Detectar qué sección está activa
-        const sections = ['sobre-mi', 'experiencia', 'proyectos', 'habilidades']
-        const sectionOffsets = sections.map(id => {
-          const element = document.getElementById(id)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            return {
-              id,
-              offsetTop: element.offsetTop,
-              height: element.offsetHeight,
-              top: rect.top
-            }
+      // Detectar qué sección está activa
+      const sections = ['sobre-mi', 'experiencia', 'proyectos', 'habilidades', 'contacto']
+      const sectionOffsets = sections.map(id => {
+        const element = document.getElementById(id)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return {
+            id,
+            offsetTop: element.offsetTop,
+            height: element.offsetHeight,
+            top: rect.top
           }
-          return null
-        }).filter(Boolean)
+        }
+        return null
+      }).filter(Boolean)
 
-        // Encontrar la sección activa (la que está más cerca del centro de la pantalla)
-        const viewportCenter = window.innerHeight / 2
-        let currentActive = ''
+      // Encontrar la sección cuyo centro esté más cerca del centro de la pantalla
+      const viewportCenter = window.innerHeight / 2
+      let currentActive = ''
+      let minDistance = Infinity
+      
+      for (const section of sectionOffsets) {
+        // Distancia del centro de la sección al centro de la pantalla
+        const sectionCenter = section.top + (section.height / 2)
+        const distance = Math.abs(sectionCenter - viewportCenter)
         
-        for (const section of sectionOffsets) {
-          if (section.top <= viewportCenter && section.top + section.height > viewportCenter) {
-            currentActive = section.id
-            break
-          }
+        if (distance < minDistance) {
+          minDistance = distance
+          currentActive = section.id
         }
-        
-        // Si no hay sección en el centro, usar la más cercana
-        if (!currentActive && sectionOffsets.length > 0) {
-          const closest = sectionOffsets.reduce((prev, curr) => {
-            return Math.abs(curr.top - viewportCenter) < Math.abs(prev.top - viewportCenter) ? curr : prev
-          })
-          if (Math.abs(closest.top - viewportCenter) < 300) { // Solo si está relativamente cerca
-            currentActive = closest.id
-          }
-        }
-        
+      }
+      
+      if (currentActive) {
         setActiveSection(currentActive)
       }
     }

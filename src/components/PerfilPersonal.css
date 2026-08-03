@@ -154,8 +154,8 @@
   text-align: center;
 }
 
-.navigation button:hover {
-
+.navigation button:hover,
+.navigation button.active {
   color: #ff5900;
 }
 

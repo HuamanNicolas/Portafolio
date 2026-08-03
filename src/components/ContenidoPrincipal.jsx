@@ -14,57 +14,71 @@ function ContenidoPrincipal({ isMobile }) {
   // Cargar y procesar habilidades de experiencias y proyectos
   useEffect(() => {
     const cargarHabilidades = async () => {
+      // 1. Intentar cargar desde caché
+      const cachedHabilidades = localStorage.getItem('portfolio_habilidades')
+      if (cachedHabilidades) {
+        setHabilidades(JSON.parse(cachedHabilidades))
+        setLoadingHabilidades(false)
+      } else {
+        setLoadingHabilidades(true)
+      }
 
-      setLoadingHabilidades(true)
+      try {
+        // Cargar experiencias
+        const experienciasRef = collection(db, 'experiencia')
+        const experienciasSnapshot = await getDocs(experienciasRef)
 
-      // Cargar experiencias
-      const experienciasRef = collection(db, 'experiencia')
-      const experienciasSnapshot = await getDocs(experienciasRef)
+        // Cargar proyectos
+        const proyectosRef = collection(db, 'proyectos')
+        const proyectosSnapshot = await getDocs(proyectosRef)
 
-      // Cargar proyectos
-      const proyectosRef = collection(db, 'proyectos')
-      const proyectosSnapshot = await getDocs(proyectosRef)
+        const todasHabilidades = new Set()
 
-      const todasHabilidades = new Set()
+        // Procesar habilidades de experiencias
+        experienciasSnapshot.forEach((doc) => {
+          const data = doc.data()
+          if (data.habilidades) {
+            const habilidadesArray = Array.isArray(data.habilidades)
+              ? data.habilidades
+              : data.habilidades.split(',')
 
-      // Procesar habilidades de experiencias
-      experienciasSnapshot.forEach((doc) => {
-        const data = doc.data()
-        if (data.habilidades) {
-          const habilidadesArray = Array.isArray(data.habilidades)
-            ? data.habilidades
-            : data.habilidades.split(',')
+            habilidadesArray.forEach(habilidad => {
+              if (typeof habilidad === 'string') {
+                todasHabilidades.add(habilidad.trim())
+              }
+            })
+          }
+        })
 
-          habilidadesArray.forEach(habilidad => {
-            if (typeof habilidad === 'string') {
-              todasHabilidades.add(habilidad.trim())
-            }
-          })
+        // Procesar habilidades de proyectos (tecnologías)
+        proyectosSnapshot.forEach((doc) => {
+          const data = doc.data()
+          if (data.tecnologias) {
+            const tecnologiasArray = Array.isArray(data.tecnologias)
+              ? data.tecnologias
+              : data.tecnologias.split(',')
+
+            tecnologiasArray.forEach(tecnologia => {
+              if (typeof tecnologia === 'string') {
+                todasHabilidades.add(tecnologia.trim())
+              }
+            })
+          }
+        })
+
+        const habilidadesArray = Array.from(todasHabilidades).sort()
+        setHabilidades(habilidadesArray)
+        localStorage.setItem('portfolio_habilidades', JSON.stringify(habilidadesArray))
+        
+        if (!cachedHabilidades) {
+          setLoadingHabilidades(false)
         }
-      })
-
-      // Procesar habilidades de proyectos (tecnologías)
-      proyectosSnapshot.forEach((doc) => {
-        const data = doc.data()
-        if (data.tecnologias) {
-          const tecnologiasArray = Array.isArray(data.tecnologias)
-            ? data.tecnologias
-            : data.tecnologias.split(',')
-
-          tecnologiasArray.forEach(tecnologia => {
-            if (typeof tecnologia === 'string') {
-              todasHabilidades.add(tecnologia.trim())
-            }
-          })
+      } catch (error) {
+        console.error('Error al cargar habilidades:', error)
+        if (!cachedHabilidades) {
+          setLoadingHabilidades(false)
         }
-      })
-
-      // Convertir Set a Array y ordenar
-      setHabilidades(Array.from(todasHabilidades).sort())
-
-
-      setLoadingHabilidades(false)
-
+      }
     }
 
     cargarHabilidades()

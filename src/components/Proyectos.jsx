@@ -41,11 +41,20 @@ function Proyectos() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [proyectos])
 
-  // Cargar proyectos de Firebase
+  // Cargar proyectos de Firebase con caché local
   useEffect(() => {
     const cargarProyectos = async () => {
-      try {
+      // 1. Intentar cargar desde caché primero para renderizado instantáneo
+      const cachedProyectos = localStorage.getItem('portfolio_proyectos')
+      if (cachedProyectos) {
+        setProyectos(JSON.parse(cachedProyectos))
+        setLoadingProyectos(false)
+      } else {
         setLoadingProyectos(true)
+      }
+
+      // 2. Buscar datos frescos en segundo plano
+      try {
         const proyectosRef = collection(db, 'proyectos')
         const q = query(proyectosRef, orderBy('fecha', 'desc')) // Ordenar por fecha descendente
         const querySnapshot = await getDocs(q)
@@ -57,8 +66,13 @@ function Proyectos() {
             ...doc.data()
           })
         })
-        
+        // Actualizar estado y caché solo si hay datos nuevos o diferentes
         setProyectos(proyectosData)
+        localStorage.setItem('portfolio_proyectos', JSON.stringify(proyectosData))
+        
+        if (!cachedProyectos) {
+          setLoadingProyectos(false)
+        }
       } catch (error) {
         console.error('Error al cargar proyectos:', error)
         // Datos de ejemplo si falla Firebase

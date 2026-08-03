@@ -10,7 +10,6 @@ import {
   query 
 } from 'firebase/firestore'
 import { db } from '../../firebase/config'
-import { compressImageToBase64 } from '../../utils/imageCompression'
 import './CrudExperiencias.css'
 
 function CrudExperiencias() {
@@ -66,19 +65,6 @@ function CrudExperiencias() {
       ...prev,
       [name]: value
     }))
-  }
-
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      try {
-        const base64 = await compressImageToBase64(file)
-        setFormData(prev => ({ ...prev, imagen: base64 }))
-      } catch (error) {
-        console.error("Error al procesar la imagen:", error)
-        alert("Error al procesar la imagen")
-      }
-    }
   }
 
   // Crear nueva experiencia
@@ -268,13 +254,14 @@ function CrudExperiencias() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="imagen">Imagen (Logo)</label>
+          <label htmlFor="imagen">Ruta de la Imagen (Logo)</label>
           <input
-            type="file"
+            type="text"
             id="imagen"
             name="imagen"
-            accept="image/*"
-            onChange={handleImageChange}
+            value={formData.imagen}
+            onChange={handleInputChange}
+            placeholder="Ejemplo: /logo-empresa.png"
           />
           {formData.imagen && (
             <div className="image-preview" style={{ marginTop: '10px' }}>

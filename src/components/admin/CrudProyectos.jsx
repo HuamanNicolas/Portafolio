@@ -10,7 +10,6 @@ import {
   query 
 } from 'firebase/firestore'
 import { db } from '../../firebase/config'
-import { compressImageToBase64 } from '../../utils/imageCompression'
 import './CrudProyectos.css'
 
 function CrudProyectos() {
@@ -66,19 +65,6 @@ function CrudProyectos() {
       ...prev,
       [name]: value
     }))
-  }
-
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      try {
-        const base64 = await compressImageToBase64(file, 1200, 1200) // Proyectos pueden tener imágenes un poco más grandes
-        setFormData(prev => ({ ...prev, imagen: base64 }))
-      } catch (error) {
-        console.error("Error al procesar la imagen:", error)
-        alert("Error al procesar la imagen")
-      }
-    }
   }
 
   // Crear nuevo proyecto
@@ -267,13 +253,14 @@ function CrudProyectos() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="imagen">Imagen / Captura</label>
+          <label htmlFor="imagen">Ruta de la Imagen</label>
           <input
-            type="file"
+            type="text"
             id="imagen"
             name="imagen"
-            accept="image/*"
-            onChange={handleImageChange}
+            value={formData.imagen}
+            onChange={handleInputChange}
+            placeholder="Ejemplo: /proyecto1.jpg (Asegúrate de colocarla en la carpeta public)"
           />
           {formData.imagen && (
             <div className="image-preview" style={{ marginTop: '10px' }}>

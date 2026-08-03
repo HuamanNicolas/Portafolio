@@ -12,8 +12,17 @@ function Experiencia() {
   // Cargar experiencias de Firebase
   useEffect(() => {
     const cargarExperiencias = async () => {
-     
+      // 1. Intentar cargar desde caché primero
+      const cachedExperiencias = localStorage.getItem('portfolio_experiencias')
+      if (cachedExperiencias) {
+        setExperiencias(JSON.parse(cachedExperiencias))
+        setLoadingExperiencias(false)
+      } else {
         setLoadingExperiencias(true)
+      }
+
+      // 2. Buscar datos frescos
+      try {
         const experienciasRef = collection(db, 'experiencia')
         const q = query(experienciasRef, orderBy('año', 'desc')) 
         const querySnapshot = await getDocs(q)
@@ -27,9 +36,18 @@ function Experiencia() {
         })
         
         setExperiencias(experienciasData)
-      
-        setLoadingExperiencias(false)
-      
+        localStorage.setItem('portfolio_experiencias', JSON.stringify(experienciasData))
+        
+        if (!cachedExperiencias) {
+          setLoadingExperiencias(false)
+        }
+      } catch (error) {
+        console.error('Error al cargar experiencias:', error)
+        
+        if (!cachedExperiencias) {
+          setLoadingExperiencias(false)
+        }
+      }
     }
 
     cargarExperiencias()
