@@ -57,7 +57,7 @@
   transform: translateX(-50%);
   width: 2px;
   background: #ff5900;
-  transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: height 0.2s ease-out;
   z-index: 1;
 }
 

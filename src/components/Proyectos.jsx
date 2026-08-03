@@ -12,33 +12,25 @@ function Proyectos() {
   useEffect(() => {
     const handleScroll = () => {
       if (gridRef.current) {
-        const rect = gridRef.current.getBoundingClientRect()
+        const gridRect = gridRef.current.getBoundingClientRect()
         const windowHeight = window.innerHeight
         
-        // Start filling when the top of the grid is at 70% of the viewport height
-        // Finish filling when the bottom of the grid is at 30% of the viewport height
-        const startOffset = windowHeight * 0.7
-        const scrolled = startOffset - rect.top
+        // El punto de progreso sigue el centro de la pantalla
+        const triggerY = windowHeight * 0.5
         
-        // The total distance to scroll for 100% fill is the height of the grid 
-        // minus some padding at the end so it fills up before scrolling completely out
-        const scrollDistance = rect.height - (windowHeight * 0.2)
-        
-        const totalRows = Math.ceil(proyectos.length / 2) || 1
-        const stepSize = 100 / totalRows
+        // Cuánto hemos scrolleado dentro de la grilla (desde la parte superior)
+        const scrolled = triggerY - gridRect.top
         
         let progress = 0
         if (scrolled > 0) {
-          progress = Math.min(100, Math.max(0, (scrolled / scrollDistance) * 100))
+          // Porcentaje de progreso basado en la altura total de la grilla
+          progress = (scrolled / gridRect.height) * 100
         }
         
-        const currentRow = Math.floor(progress / stepSize) + 1
+        // Limitar entre 0 y 100
+        progress = Math.max(0, Math.min(100, progress))
         
-        let steppedProgress = currentRow * stepSize
-        if (progress === 0) steppedProgress = 0
-        if (progress > 95) steppedProgress = 100
-        
-        gridRef.current.style.setProperty('--scroll-fill', `${steppedProgress}%`)
+        gridRef.current.style.setProperty('--scroll-fill', `${progress}%`)
       }
     }
 
