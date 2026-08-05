@@ -2,7 +2,7 @@ import './Contacto.css';
 
 function Contacto() {
   return (
-    <div className="content-section" id="contacto">
+    <div className="content-section reveal-fade" id="contacto">
       <h2>Contacto</h2>
       <p>¿Interesado en trabajar juntos? Envíame un mensaje.</p>
       

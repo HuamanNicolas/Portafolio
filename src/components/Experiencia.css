@@ -12,13 +12,26 @@
   gap: 2rem;
 }
 
+/* Animación de slide desde la derecha */
+.experiencia-card.reveal-slide-right {
+  opacity: 0;
+  transform: translateX(100px);
+  /* Mantenemos border-color para el hover, pero añadimos opacity y transform para la entrada */
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
+}
+
+.experiencia-card.reveal-slide-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .experiencia-card {
   display: flex;
   background: #13102cef;
   border-radius: 8px;
   border: 1px solid #333;
   overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.3s ease; /* Quitamos transform aquí para no chocar con la animación */
 }
 
 

@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { GraduationCap, Code2, Target } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import './ContenidoPrincipal.css'
 
 function ContenidoPrincipal({ isMobile }) {
@@ -83,11 +84,15 @@ function ContenidoPrincipal({ isMobile }) {
 
     cargarHabilidades()
   }, [])
+
+  // Inicializar animaciones de scroll
+  useScrollReveal('.reveal-fade', [habilidades])
+
   return (
     <div className={`revealed-content ${isMobile ? 'mobile-content' : ''}`}>
 
       {/* Sección Sobre Mí */}
-      <div className="content-section" id="sobre-mi">
+      <div className="content-section reveal-fade" id="sobre-mi">
         <h2>Sobre Mí</h2>
         <p>
           Programador Web egresado de la UNSJ y desarrollador enfocado en crear soluciones digitales eficientes para PyMEs, emprendedores y proyectos independientes. A lo largo de mi formación y trayectoria, he consolidado habilidades técnicas en tecnologías web modernas y metodologías colaborativas. Disfruto enfrentando nuevos desafíos tecnológicos, optimizando el rendimiento de las aplicaciones y construyendo herramientas a medida que potencien los objetivos de cada cliente.
@@ -128,7 +133,7 @@ function ContenidoPrincipal({ isMobile }) {
       <Experiencia />
       <Proyectos />
       {/* Sección de Habilidades */}
-      <div className="content-section habilidades-section" id="habilidades">
+      <div className="content-section habilidades-section reveal-fade" id="habilidades">
         <h2>Habilidades y Tecnologías</h2>
         <p>Tecnologías y herramientas que he utilizado en mis experiencias laborales y proyectos</p>
 

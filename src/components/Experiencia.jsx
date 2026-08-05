@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase/config'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import bcfexaLogo from '../assets/experiencias/Bcfexa.png'
 import crecerLogo from '../assets/experiencias/Crecer.png'
 import './Experiencia.css'
@@ -53,6 +54,9 @@ function Experiencia() {
     cargarExperiencias()
   }, [])
 
+  // Inicializar animaciones de scroll
+  useScrollReveal('.reveal-slide-right', [experiencias])
+
   return (
     <div className="content-section" id="experiencia">
       <h2>Experiencia Laboral</h2>
@@ -64,8 +68,8 @@ function Experiencia() {
         </div>
       ) : (
         <div className="experiencias-grid">
-          {experiencias.map((experiencia, index) => (
-            <div key={experiencia.id} className="experiencia-card">
+          {experiencias.map((experiencia) => (
+            <div key={experiencia.id} className="experiencia-card reveal-slide-right">
               {experiencia.imagen && (
                 <div className="experiencia-imagen-container">
                   <img 
