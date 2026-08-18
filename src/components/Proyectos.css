@@ -202,11 +202,24 @@
 
   .proyectos-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem; /* un poco mas de espacio vertical entre tarjetas */
+    padding-left: 20px; /* espacio para la línea del lado izquierdo */
   }
 
   .proyectos-grid::before {
-    display: none;
+    display: block; /* la mostramos */
+    left: 0;
+    transform: none;
+  }
+
+  .timeline-progress {
+    left: 0;
+    transform: none;
+  }
+
+  .timeline-dot {
+    left: 0;
+    transform: translate(-50%, 50%); /* -50% en X para centrar el punto sobre la linea */
   }
 
   .proyecto-header {

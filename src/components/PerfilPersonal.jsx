@@ -1,9 +1,21 @@
+import { useState } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import profileImage from '../assets/imagen-perfil.png'
 import MenuHamburguesa from './MenuHamburguesa'
 import './PerfilPersonal.css'
 
 function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault()
+    const email = "nicolas.h2010fr@gmail.com"
+    navigator.clipboard.writeText(email)
+    setCopied(true)
+    setTimeout(() => {
+      setCopied(false)
+    }, 2000)
+  }
   return (
     <>
       {/* Menú hamburguesa solo en móvil */}
@@ -28,6 +40,7 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
             <div className="info">
               <h1>Nicolas Huaman</h1>
               <h2>Desarrollador Web</h2>
+              <div className='linea'></div>
               <p className={`description hidden ${isMobile ? 'mobile-description' : ''}`}>
                 Soy Nico, estudiante de la UNSJ, próximo a recibirme como Programador Web.
                 Me apasiona la programación y busco aplicar mis conocimientos en el ámbito laboral.
@@ -87,12 +100,17 @@ function PerfilPersonal({ scrollToSection, activeSection, isMobile }) {
                 <a href="https://github.com/HuamanNicolas" target="_blank" rel="noopener noreferrer">
                   <FaGithub />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/nicolas-huaman97/" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin />
                 </a>
-                <a href="mailto:nicolas.h2010fr@gmail.com">
-                  <FaEnvelope />
-                </a>
+                <div className="email-container">
+                  <a href="#" onClick={handleCopyEmail} aria-label="Copiar email">
+                    <FaEnvelope />
+                  </a>
+                  <span className={`email-tooltip ${copied ? 'show' : ''}`}>
+                    ¡Copiado en el portapapeles!
+                  </span>
+                </div>
               </div>
             </div>
           </div>

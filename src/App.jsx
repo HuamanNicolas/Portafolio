@@ -13,6 +13,12 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Forzar el scroll al principio al recargar la página
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+    window.scrollTo(0, 0)
+
     // Escuchar cambios en la URL
     const handlePopState = () => {
       setCurrentPath(window.location.pathname)
